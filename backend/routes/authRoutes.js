@@ -53,29 +53,6 @@ router.get('/user/:id', async (req, res) => {
   res.json(user);
 });
 
-
-router.get('/user', async (req, res) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-
-  if (token == null) return res.sendStatus(401); 
-
-  jwt.verify(token, 'your_jwt_secret', async (err, user) => {
-    if (err) return res.sendStatus(403); 
-
-    const userDetails = await User.findById(user.id); 
-    if (!userDetails) return res.sendStatus(404); 
-
-   
-    res.json({ 
-      id: userDetails._id, 
-      username: userDetails.username,
-      password: userDetails.password,
-      email: userDetails.email, 
-      rol: userDetails.rol }); 
-  });
-});
-
 router.get('/allusers', async (req, res) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
