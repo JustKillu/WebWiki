@@ -92,11 +92,14 @@ router.post('/entry/:id/comment',
     if (!entry) {
       return res.status(404).json({ error: 'Entrada no encontrada' });
     }
-    entry.comments.push({ username, content });
+    const date = new Date();
+    entry.comments.push({ username, content, date });
     await entry.save();
     res.json(entry);
   }
 );
+
+
 
 router.delete('/entry/:id/comment/:commentId', async (req, res) => {
   const { id, commentId } = req.params;
@@ -104,8 +107,13 @@ router.delete('/entry/:id/comment/:commentId', async (req, res) => {
   if (!entry) {
     return res.status(404).json({ error: 'Entrada no encontrada' });
   }
-  entry.comments.id(commentId).remove();
-  await entry.save();
+  
+  const commentIndex = entry.comments.findIndex(comment => comment._id.toString() === commentId);
+  if (commentIndex !== -1) {
+    entry.comments.splice(commentIndex, 1);
+    await entry.save();
+  }
+  
   res.json(entry);
 });
 
