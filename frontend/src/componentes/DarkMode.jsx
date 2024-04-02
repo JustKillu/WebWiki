@@ -12,7 +12,7 @@ const DarkModeSwitch = () => {
         id="toggle" 
         checked={darkMode} 
         onChange={() => setDarkMode(!darkMode)} 
-        className={`toggle-checkbox absolute block w-6 h-6 rounded-full border-4 appearance-none cursor-pointer transform ${darkMode ? 'translate-x-3' : ''} transition-transform duration-200 ${darkMode ? 'bg-brown border-brown' : 'bg-yellow-200 border-yellow-200'}`}
+        className={`toggle-checkbox absolute block w-6 h-6 rounded-full border-4 appearance-none cursor-pointer transform ${darkMode ? 'translate-x-3' : ''} transition-transform duration-200 ${darkMode ? 'bg-pink border-pink' : 'bg-yellow-200 border-yellow-200'}`}
       />
       <label 
         htmlFor="toggle" 
