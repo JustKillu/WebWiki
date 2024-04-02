@@ -20,7 +20,8 @@ function App() {
     setMargin(isOpen ? 'ml-64' : 'ml-0');
   }, [isOpen]);
 
-  const AuthenticatedLandingPage = withAuthentication(LandingPage);
+  const AuthenticatedWikiEntry = withAuthentication(WikiEntry);
+  const AuthenticatedEntryDetail = withAuthentication(EntryDetail);
   const AuthenticatedAdminPage = withAuthentication(AdminPage, 'adm');
 
   return (
@@ -29,11 +30,11 @@ function App() {
           <Navbar />
           <div className={`transition-all duration-200 ${margin}`}>
             <Routes>
-              <Route path="/" element={<AuthenticatedLandingPage />} />
+              <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/wiki" element={<WikiEntry />} />
-              <Route path="/entry/:id" element={<EntryDetail />} /> 
+              <Route path="/wiki" element={<AuthenticatedWikiEntry />} />
+              <Route path="/entry/:id" element={<AuthenticatedEntryDetail />} /> 
               <Route path="/admin" element={<AuthenticatedAdminPage />} />
               <Route path="/unauthorized" element={<Unauthorized />} />
             </Routes>
