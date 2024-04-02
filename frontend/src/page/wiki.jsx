@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Entry from '../componentes/Entry.jsx';
 import EntryForm from '../componentes/EntryForm.jsx';
+import WikipediaSearch   from '../componentes/WikipediaSearch.jsx';
 import { useNavigate } from 'react-router-dom';
 
 const WikiPage = () => {
@@ -82,17 +83,20 @@ const WikiPage = () => {
 
   return (
     <div className="container mx-auto px-4">
-      {entries.length > 0 ? (
-        entries.map((entry, index) => (
-          <Entry key={index} entry={entry} user={user} handleDelete={handleDelete} handleEdit={handleEdit} onClick={() => handleEntryClick(entry._id)} />
-        ))
-      ) : (
-        <p>No hay entradas disponibles.</p>
-      )}
+      <div className="grid grid-cols-2 gap-4">
+        {entries.length > 0 ? (
+          entries.map((entry, index) => (
+            <Entry key={index} entry={entry} user={user} handleDelete={handleDelete} handleEdit={handleEdit} onClick={() => handleEntryClick(entry._id)} />
+          ))
+        ) : (
+          <p>No hay entradas disponibles.</p>
+        )}
+      </div>
 
       {user && user.role === 'adm' && (
         <EntryForm newEntry={newEntry} setNewEntry={setNewEntry} handleCreate={handleCreate} showForm={showForm} setShowForm={setShowForm} />
       )}
+      <WikipediaSearch />
     </div>
   );
 };
