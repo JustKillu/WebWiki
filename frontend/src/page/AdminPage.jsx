@@ -20,10 +20,10 @@ const AdminPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1 className="text-2xl font-bold mb-5">Usuarios Registrados</h1>
+      <h1 className="text-2xl font-bold mb-5 dark:text-white">Usuarios Registrados</h1>
       <div className="flex flex-col w-full px-3">
         {users.map((user) => (
-          <div key={user._id} className="border rounded px-3 py-2 mb-2 flex justify-between">
+          <div key={user._id} className="border rounded px-3 py-2 mb-2 flex justify-between bg-white">
             <div>
               <h2 className="font-bold">{user.username}</h2>
               <p>{user.email}</p>
