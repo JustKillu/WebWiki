@@ -60,10 +60,10 @@ function Navbar() {
         </nav>
       </div>
       {!isOpen && (
-        <button onClick={() => setIsOpen(!isOpen)} className="fixed bottom-0 mb-16 left-0 mt-4 bg-white text-purple-900 px-2 py-1 rounded w-16 text-lg translate-x-2/3 hover:bg-purple-200 transition duration-500 ease-in-out">
-          <span className="text-purple-900">🠖</span>
-        </button>
-      )}
+  <button onClick={() => setIsOpen(!isOpen)} className="fixed bottom-0 mb-16 left-0 mt-4 bg-white opacity-40 text-purple-900 px-2 py-1 rounded w-16 text-lg z-20 translate-x-2/3 hover:opacity-100 transition duration-500 ease-in-out shadow-lg">
+    <span className="text-purple-900">🠖</span>
+  </button>
+)}
       <div className={`transition-all duration-200 ${isOpen ? 'translate-x-64' : 'translate-x-0'}`}>
       </div>
     </>
