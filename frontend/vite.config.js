@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import react from '@vitejs/plugin-react-swc';
-import fs from 'fs';
 
 
 const manifestForPlugin = {
@@ -14,7 +13,7 @@ const manifestForPlugin = {
   theme_color: "#FFDAB9",
   icons: [
     {
-      src: "/image1.png",
+      src: "/weiki.png",
       sizes: "144x144",
       type: "image/png",
       purpose: "any"
@@ -28,8 +27,8 @@ const manifestForPlugin = {
       form_factor:"wide"
     },
     {
-      src: "/image.png", 
-      sizes: "1279x720",
+      src: "/image1.png", 
+      sizes: "374x664",
       type: "image/png",
     }
   ]
