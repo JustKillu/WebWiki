@@ -28,10 +28,11 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen text-white pb-20">
+    <div className="dark:text-white">
+      <div className='transition-colors duration-500 ease-in-out dark:bg-gray-800 bg-slate-200 m-6 pb-20 pt-32 rounded-2xl'>
       <header className="hero">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-4 mt-12">
+          <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-4 mt-4">
             Bienvenido a Nuestra Página Wiki
           </h1>
           <p className="text-base sm:text-xl md:text-2xl font-light mb-8">
@@ -45,17 +46,18 @@ const LandingPage = () => {
         </h2>
         <hr className="mb-8 w-full sm:w-2/4 mx-auto border-red-500"/>
         <div className="grid grid-cols-2 gap-4 w-full sm:w-2/4 mx-auto">
-          {entries.map((entry) => (
-            <div key={entry._id} className="relative bg-gray-800 p-4 rounded-lg cursor-pointer" onClick={() => handleEntryClick(entry._id)}>
-              {entry.image.data && (
-                <img className="absolute top-0 left-0 w-full h-full object-cover opacity-50" src={`data:${entry.image.contentType};base64,${Buffer.from(entry.image.data).toString('base64')}`} alt="Imagen de la entrada"/>
-              )}
-              <div className="relative">
-                <h2 className="text-xl sm:text-2xl font-bold mb-2">{entry.title}</h2>
-                <p className="text-gray-300">{entry.content}</p>
-              </div>
-            </div>
-          ))}
+        {entries.map((entry) => (
+  <div key={entry._id} className="relative bg-gray-800 p-4 rounded-lg cursor-pointer" onClick={() => handleEntryClick(entry._id)}>
+    {entry.image.data && (
+      <img className="absolute top-0 left-0 w-full h-full object-cover opacity-50" src={`data:${entry.image.contentType};base64,${Buffer.from(entry.image.data).toString('base64')}`} alt="Imagen de la entrada"/>
+    )}
+    <div className="relative">
+      <h2 className="text-xl sm:text-2xl font-bold mb-2 text-indigo-200 dark:text-indigo-600">{entry.title}</h2>
+      <p className="text-gray-100 text-wrap">{entry.content.substring(0, 100)}{entry.content.length > 100 ? '...' : ''}</p>
+    </div>
+  </div>
+))}
+
         </div>
         <h2 className="text-xl sm:text-3xl font-bold mb-4 mt-12 text-center">
           Creador
@@ -71,6 +73,7 @@ const LandingPage = () => {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 };
