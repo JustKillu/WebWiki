@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes.js');
 const wikiRoutes = require('./routes/wikiRoutes.js');
+const peticionRoutes = require('./routes/peticionRoutes.js');
 
 // Inicializar la aplicación Express
 const app = express();
@@ -20,5 +21,6 @@ mongoose.connect(process.env.MONGODB_URI);
 
 app.use(authRoutes);
 app.use(wikiRoutes);
+app.use(peticionRoutes);
 
 app.listen(3001, () => console.log('Server is running on http://localhost:3001'));
