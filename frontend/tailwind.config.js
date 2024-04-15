@@ -17,8 +17,8 @@ export default {
         'dark-text': '#ffffff',
       },
       backgroundImage: theme => ({
-        'light-gradient': 'linear-gradient(to right, #D6BCFA, #9B5DE5)',
-        'dark-gradient': 'linear-gradient(to right, #6D4C3C, #4F2683)', 
+        'light-gradient': 'linear-gradient(to right, #D6BCFA, #9983B5)',
+        'dark-gradient': 'linear-gradient(to right, #281343, #4F2683)', 
       })
     },
   },
