@@ -59,6 +59,10 @@ El servidor debería comenzar a ejecutarse de manera Network  `http://192.168.0.
 
 Si el servidor de localhost no se muestra actualizado hay que borrar el cache del navegador! 
 
+# Nota
+
+Crer un .env en la carpeta del backend donde ira l url de la DB de mongodb
+
 # Frontend del repositorio de web online
 
 Este es el frontend de mi aplicación web online. Aquí encontrarás información sobre las rutas y componentes disponibles.
@@ -76,6 +80,9 @@ El archivo principal de React (App.jsx) es el punto de entrada de la aplicación
 - `/wiki`: La ruta para la página de entrada de la wiki que renderiza el componente `WikiEntry`. Esta ruta está autenticada.
 - `/entry/:id`: La ruta para los detalles de la entrada que renderiza el componente `EntryDetail`. Esta ruta está autenticada.
 - `/unauthorized`: La ruta para la página de acceso no autorizado que renderiza el componente `Unauthorized`.
+- `/formulario/:id`: Esta ruta lleva a una entrada de formularios . Los usuarios pueden ver las peticiones subidas por otros usuarios. 
+-`/peticion`: Esta ruta lleva a la página de petición. Aquí, los usuarios pueden hacer peticiones para subir articulos.
+-`/trivia`: Esta ruta lleva a la página de trivia. Los usuarios pueden jugar a un juego de trivia aquí.
 
 ### Componentes
 
@@ -87,7 +94,7 @@ El archivo principal de React (App.jsx) es el punto de entrada de la aplicación
 6. `EntryDetail.jsx`: Este componente se utiliza para los detalles de la entrada.
 7. `NavBar.jsx`: Este componente se utiliza para la barra de navegación.
 8. `Unauthorized.jsx`: Este componente se utiliza para la página de acceso no autorizado.
-
+9. `triv.jsx`: Componente para la trivia
 
 # Backend del repositorio de web online
 
@@ -103,6 +110,7 @@ El archivo principal para correr el servidor es un archivo Node.js que utiliza E
 
 2. `WikiEntry.js`: Este es el modelo de publicaciones de la wiki.
 
+3. `peticion.js`: Este es el modelo de las peticiones para subir articulos
 
 ## Rutas de autenticación (Auth routes)
 
@@ -130,3 +138,20 @@ El archivo principal para correr el servidor es un archivo Node.js que utiliza E
 
 7. `DELETE /entry/:id/comment/:commentId`: Esta ruta permite eliminar un comentario de una entrada específica utilizando el ID del comentario.
 
+## Rutas de peticion (peticionRoutes)
+
+1. `POST /formulario`: Esta ruta permite a los usuarios crear un nuevo formulario. Si los datos son válidos, se crea un nuevo formulario en la base de datos.
+
+2. `PUT /formulario/:id`: Esta ruta permite actualizar los detalles de un formulario específico utilizando su ID. Si se proporcionan datos válidos, se actualizan en la base de datos.
+
+3. `DELETE /formulario/:id`: Esta ruta permite eliminar un formulario utilizando su ID.
+
+4. `GET /formulario`: Esta ruta permite obtener todos los formularios.
+
+5. `GET /admin`: Esta ruta permite obtener acceso al panel de administración.
+
+6. `DELETE /formulario/:id/comment/:commentId`: Esta ruta permite eliminar un comentario de un formulario específico utilizando el ID del comentario.
+
+7. `POST /formulario/:id/comment`: Esta ruta permite a los usuarios agregar un comentario a un formulario específico. Se requiere un nombre de usuario y contenido para el comentario.
+
+8. `GET /formulario/:id`: Esta ruta permite obtener los detalles de un formulario específico utilizando su ID.
