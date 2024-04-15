@@ -1,13 +1,14 @@
 import { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DarkMode from '../componentes/DarkMode';
 import { ThemeContext } from '../ThemeProvider';
-import { OpenContext } from '../OpenContext'; 
+import { OpenContext } from '../OpenContext';
 
 function Navbar() {
-  const { isOpen, setIsOpen } = useContext(OpenContext); 
-  const { isAuthenticated, rol } = useContext(ThemeContext); 
+  const { isOpen, setIsOpen } = useContext(OpenContext);
+  const { isAuthenticated, rol } = useContext(ThemeContext);
   const [username, setUsername] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -16,12 +17,13 @@ function Navbar() {
     } else {
       setUsername(null);
     }
-  }, [isAuthenticated, rol]); 
+  }, [isAuthenticated, rol]);
 
   const handleLogout = () => {
     localStorage.removeItem('username');
     localStorage.removeItem('token');
     setUsername(null);
+    navigate('/');
   };
 
   return (
@@ -39,9 +41,28 @@ function Navbar() {
         <nav className="p-6 bg-purple-900 text-white h-screen">
           <ul className="flex flex-col space-y-4">
             <li><Link to="/" className=" py-1 hover:text-gray-300 text-lg flex items-center transition duration-500 ease-in-out">{isOpen ? <><i className="fas fa-home mr-2"></i> Inicio</> : <i className="fas fa-home"></i>}</Link></li>
-            <li><Link to="/wiki" className=" py-1 hover:text-gray-300 text-lg flex items-center transition duration-500 ease-in-out">{isOpen ? <><i className="fas fa-book mr-2"></i> Wiki</> : <i className="fas fa-book"></i>}</Link></li>
+            {isAuthenticated && (
+              <>
+                <li>
+                  <Link to="/wiki" className=" py-1 hover:text-gray-300 text-lg flex items-center transition duration-500 ease-in-out">
+                    {isOpen ? <><i className="fas fa-book mr-2"></i> Wiki</> : <i className="fas fa-book"></i>}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/peticion" className=" py-1 hover:text-gray-300 text-lg flex items-center transition duration-500 ease-in-out">
+                    {isOpen ? <><i className="fas fa-file-alt mr-2"></i> Petición</> : <i className="fas fa-file-alt"></i>}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/trivia" className=" py-1 hover:text-gray-300 text-lg flex items-center transition duration-500 ease-in-out">
+                    {isOpen ? <><i className="fas fa-question-circle mr-2"></i> Trivia</> : <i className="fas fa-question-circle"></i>}
+                  </Link>
+                </li>
+              </>
+            )}
+
             {rol === 'adm' && <li><Link to="/admin" className=" py-1 hover:text-gray-300 text-lg flex items-center transition duration-500 ease-in-out">{isOpen ? <><i className="fas fa-user-shield mr-2"></i> Admin</> : <i className="fas fa-user-shield"></i>}</Link></li>}
-            <hr className="border-gray-600"/>
+            <hr className="border-gray-600" />
             <div className="flex flex-col space-y-4 mt-2">
               {username ? (
                 <>
@@ -55,15 +76,15 @@ function Navbar() {
                 </>
               )}
             </div>
-            <DarkMode/>
+            <DarkMode />
           </ul>
         </nav>
       </div>
       {!isOpen && (
-  <button onClick={() => setIsOpen(!isOpen)} className="fixed bottom-0 mb-16 left-0 mt-4 bg-white opacity-40 text-purple-900 px-2 py-1 rounded w-16 text-lg z-20 translate-x-2/3 hover:opacity-100 transition duration-500 ease-in-out shadow-lg">
-    <span className="text-purple-900">🠖</span>
-  </button>
-)}
+        <button onClick={() => setIsOpen(!isOpen)} className="fixed bottom-0 mb-16 left-0 mt-4 bg-white opacity-40 text-purple-900 px-2 py-1 rounded w-16 text-lg z-20 translate-x-2/3 hover:opacity-100 transition duration-500 ease-in-out shadow-lg">
+          <span className="text-purple-900">🠖</span>
+        </button>
+      )}
       <div className={`transition-all duration-200 ${isOpen ? 'translate-x-64' : 'translate-x-0'}`}>
       </div>
     </>
