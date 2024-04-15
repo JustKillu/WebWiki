@@ -3,3 +3,4 @@ node_modules/
 
 # Ignorar el archivo .env
 .env
+uploads/
